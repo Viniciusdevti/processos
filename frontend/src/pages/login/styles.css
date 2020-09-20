@@ -1,0 +1,16 @@
+.cont {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    width: 100%;
+}
+
+h3 {
+    font-family: 'Carter One', cursive;
+    font-family: 'Libre Baskerville', serif;
+    color: #00736D
+}
+
+.svg {
+    margin-top: 3%;
+}
