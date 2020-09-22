@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.processos.models.Processo;
+
 import com.processos.repository.ProcessoRepository;
 
 @RestController
@@ -22,31 +24,33 @@ public class ProcessoController {
 	
 	@Autowired
 	ProcessoRepository processorepository;
+
 	
 
-	@GetMapping("book")
-	public List<Processo> ListBook() {
+	@GetMapping("/processo")
+	public List<Processo> ListProcesso() {
 		return processorepository.findAll();
 	}
 
-	@GetMapping("/book/{id}")
+	@GetMapping("/processo/{id}")
 	public Processo ListProcessId(@PathVariable(value = "id") long id) {
 		return processorepository.findById(id);
 	}
 	
 	
-	@PostMapping("/Process")
-	public Processo  saveProcess(@RequestBody Processo Process) {
-		return processorepository.save(Process);
+	@PostMapping("/processo")
+	public Processo  saveProcess(@RequestBody Processo processo) {
+		return processorepository.save(processo);
+		
 	}
 
 	@DeleteMapping("/processo")
-	public void  deletBook(@RequestBody Processo book) {
-		processorepository.delete(book);
+	public void  deletProcesso(@RequestBody Processo processo) {
+		processorepository.delete(processo);
 	}
 	
 	@PutMapping("/processo")
-	public Processo  editBook(@RequestBody Processo processo) {
+	public Processo  editProcesso(@RequestBody Processo processo) {
 		return processorepository.save(processo); 
 	}
 
