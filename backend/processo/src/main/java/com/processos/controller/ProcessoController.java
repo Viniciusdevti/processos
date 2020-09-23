@@ -24,13 +24,14 @@ public class ProcessoController {
 	
 	@Autowired
 	ProcessoRepository processorepository;
-
+	Processo processo;
 	
 
 	@GetMapping("/processo")
 	public List<Processo> ListProcesso() {
 		return processorepository.findAll();
 	}
+	  
 
 	@GetMapping("/processo/{id}")
 	public Processo ListProcessId(@PathVariable(value = "id") long id) {
@@ -48,6 +49,13 @@ public class ProcessoController {
 	public void  deletProcesso(@RequestBody Processo processo) {
 		processorepository.delete(processo);
 	}
+	@DeleteMapping("/deletar/{id}")
+	 	
+	    public void deletProcesso(@PathVariable("id")long id) {
+		processorepository.deleteById(id);
+	    
+    }
+
 	
 	@PutMapping("/processo")
 	public Processo  editProcesso(@RequestBody Processo processo) {

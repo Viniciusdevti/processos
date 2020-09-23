@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import {  useHistory } from "react-router-dom";
 import './styles.css'
 import api from "../services/api";
-import apicep from '../services/apicep'
 
-export default function Processo() {
+export default function Editar() {
 
- 
-    const history = useHistory();
-    function handleEditar (){
-        history.push('/editar');
-    }
+
 
     const [processo, setProcesso] = useState([]);
     const [name, setName] = useState("");
@@ -19,22 +14,13 @@ export default function Processo() {
     const [bairro, setBairro] = useState("");
     const [rua, setRua] = useState("");
     const [data, setdata] = useState("");
-    const [numero, setNumero] = useState();
+    const [numero, setNumero] = useState("");
 
-   
-    function consultarCep(){
-         
-      
-        
-          apicep.get(`${cep}/json`).then((response) => {
-            setCidade(response.data.localidade)
-            setBairro(response.data.bairro)
-            setRua(response.data.logradouro)
-        });
-        } 
-   
-
-
+    
+    const history = useHistory();
+    function retornar (){
+        history.push('/processo');
+    }
 
     useEffect(
         () => {
@@ -47,17 +33,7 @@ export default function Processo() {
         }, [processo]);
 
 
-        async function handleDeleteProcesso(id) {
-            try {
-              await api.delete(`deletar/${id}`)
-               
-              
-              setProcesso(processo.filter(processos=> processos.id !== id));
-            } catch (err) {
-              alert("Erro ao deletar o caso, tente novamente.");
-              console.log(id);
-            }
-          }
+        
 
     async function handleProcesso(e) {
         e.preventDefault();
@@ -92,10 +68,6 @@ export default function Processo() {
         setName("")
         setCep("")
         setdata("")
-        setRua("")
-        setCidade("")
-        setNumero(0)
-        setBairro("")
     }
 
 
@@ -107,8 +79,9 @@ export default function Processo() {
 
             <div class="brand-logo center ">
                 <div>
-                    <h3>Cadatro de processos</h3>
+                <h3>Editar  processos</h3>
                 </div>
+                <button   onClick={retornar}><i class="material-icons">assignment_return</i></button>
             </div>
             <div class="container">
 
@@ -123,33 +96,28 @@ export default function Processo() {
                         placeholder="Nome"
                         value={name}
                         onChange={e => setName(e.target.value)}
-                        required
                     />
- <div className="local">
-                   
+
+                    <label>CEP</label>
                     <input
                         onChange={(e) => setCep(e.target.value)}
-                        placeholder="Digite seu cep Ex: 75388669"
+                        placeholder="Ex: 75388669"
                         value={cep}
                         onChange={e => setCep(e.target.value)}
-                        required
                     />
- <button class="waves-effect btn-small blue darken-1 Large" onClick={consultarCep}><i class="material-icons" >search</i></button>
- </div>
+
                     <div className="local">
 
                         <input
                             placeholder="Cidade"
                             value={cidade}
                             onChange={e => setCidade(e.target.value)}
-                            required
                         />
 
                         <input
                             placeholder="Bairro"
                             value={bairro}
                             onChange={e => setBairro(e.target.value)}
-                            required
                         />
 
 
@@ -160,12 +128,11 @@ export default function Processo() {
                             placeholder="Rua"
                             value={rua}
                             onChange={e => setRua(e.target.value)}
-                            required
                         />
 
                         <input
                             placeholder="Numero"
-                           
+                            type="number"
                             onChange={e => setNumero(e.target.value)}
                         />
 
@@ -181,34 +148,11 @@ export default function Processo() {
                         onChange={e => setdata(e.target.value)}
                     />
 
-                    <button class="waves-effect waves-light btn-small">Salvar</button>
-
+                    <button class="waves-effect waves-light btn-small">Salvar<i class="material-icons left"></i></button>
+                    
                 </form>
-                <table>
-
-                    <thead >
-                        {processo.map((processos) => (
-                            <tr key={processos.id}>
-                                
-                                <th> {processos.pessoa.nome}</th>
-                                <th>  {processos.endereco.cidade}</th>
-                                <th> rua(av) {processos.endereco.rua}</th>
-                                <th> Número {processos.endereco.numero}</th>
-                                <th>  {processos.endereco.cep}</th>
-                                <th> {processos.data}</th>
-                              
-                                <td>  
-                                    <button class="waves-effect btn-small blue darken-1" onClick={handleEditar}><i class="material-icons" >edit</i></button>
-                                    <button class="waves-effect btn-small red darken-1"onClick={()=> handleDeleteProcesso(processos.id)}><i class="material-icons" >delete</i></button>
-                                </td>
-                            </tr>
-
-                        ))}
-                    </thead>
-
-
-                </table>
-
+                
+               
             </div>
 
         </div>
