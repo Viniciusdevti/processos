@@ -44,7 +44,7 @@ export default function Processo() {
                 setProcesso(response.data);
 
             });
-        }, [processo]);
+        },);
 
 
         async function handleDeleteProcesso(id) {
