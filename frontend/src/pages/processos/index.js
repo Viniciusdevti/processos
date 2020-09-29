@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {  useHistory } from "react-router-dom";
 import './styles.css'
 import api from "../services/api";
-import apicep from '../services/apicep'
+import apiCep from '../services/apiCep'
 
 export default function Processo() {
 
@@ -26,7 +26,7 @@ export default function Processo() {
          
       
         
-          apicep.get(`${cep}/json`).then((response) => {
+        apiCep.get(`${cep}/json`).then((response) => {
             setCidade(response.data.localidade)
             setBairro(response.data.bairro)
             setRua(response.data.logradouro)
