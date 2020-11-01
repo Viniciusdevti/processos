@@ -105,19 +105,19 @@ export default function Processo() {
         <div>
 
 
-            <div class="brand-logo center ">
+            <div className="brand-logo center ">
                 <div>
                     <h3>Cadatro de processos</h3>
                 </div>
             </div>
-            <div class="container">
+            <div className="container">
 
 
                 <form onSubmit={handleProcesso}>
 
                     <label>NOME DO SOLICITANTE</label>
                     <input
-                        MAXLENGTH="70"
+                        
                         type="text"
                         max="100"
                         placeholder="Nome"
@@ -134,7 +134,7 @@ export default function Processo() {
                         onChange={e => setCep(e.target.value)}
                         required
                     />
- <button class="waves-effect btn-small blue darken-1 Large" onClick={consultarCep}><i class="material-icons" >search</i></button>
+ <button className="waves-effect btn-small blue darken-1 Large" onClick={consultarCep}><i className="material-icons" >search</i></button>
  </div>
                     <div className="local">
 
@@ -181,7 +181,7 @@ export default function Processo() {
                         onChange={e => setdata(e.target.value)}
                     />
 
-                    <button class="waves-effect waves-light btn-small">Salvar</button>
+                    <button className="waves-effect waves-light btn-small">Salvar</button>
 
                 </form>
                 <table>
@@ -198,8 +198,8 @@ export default function Processo() {
                                 <th> {processos.data}</th>
                               
                                 <td>  
-                                    <button class="waves-effect btn-small blue darken-1" onClick={handleEditar}><i class="material-icons" >edit</i></button>
-                                    <button class="waves-effect btn-small red darken-1"onClick={()=> handleDeleteProcesso(processos.id)}><i class="material-icons" >delete</i></button>
+                                    <button className="waves-effect btn-small blue darken-1" onClick={handleEditar}><i class="material-icons" >edit</i></button>
+                                    <button className="waves-effect btn-small red darken-1"onClick={()=> handleDeleteProcesso(processos.id)}><i class="material-icons" >delete</i></button>
                                 </td>
                             </tr>
 

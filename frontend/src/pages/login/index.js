@@ -19,14 +19,14 @@ export default function Login() {
             <div className="cont">
                 <div className="input-field ">
                     <h3 className="center">Login</h3>
-                    <div class="input-field col s6">
-                        <input id="email" type="email" class="validate "></input>
+                    <div className="input-field col s6">
+                        <input id="email" type="email" className="validate "></input>
                         <label for="email">Email</label>
                     </div>
                     <div className ="input-field col s6">
-                        <input id="senha" type="password" class="validate"></input>
+                        <input id="senha" type="password" className="validate"></input>
                         <label for="senha">Senha</label>
-                        <a onClick={handleLogin} class="waves-effect waves-light btn">Entrar</a>
+                        <a onClick={handleLogin} className="waves-effect waves-light btn">Entrar</a>
                     </div>
                 </div>
             </div>
