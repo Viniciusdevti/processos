@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import {  useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Header from '../../Header'
 import './styles.css'
 import api from "../services/api";
 import apiCep from '../services/apiCep'
 
 export default function Processo() {
 
- 
+
     const history = useHistory();
-    function handleEditar (){
+    function handleEditar() {
         history.push('/editar');
     }
 
@@ -21,18 +22,18 @@ export default function Processo() {
     const [data, setdata] = useState("");
     const [numero, setNumero] = useState();
 
-   
-    function consultarCep(){
-         
-      
-        
+
+    function consultarCep() {
+
+
+
         apiCep.get(`${cep}/json`).then((response) => {
             setCidade(response.data.localidade)
             setBairro(response.data.bairro)
             setRua(response.data.logradouro)
         });
-        } 
-   
+    }
+
 
 
 
@@ -44,20 +45,20 @@ export default function Processo() {
                 setProcesso(response.data);
 
             });
-        },[processo]);
+        }, [processo]);
 
 
-        async function handleDeleteProcesso(id) {
-            try {
-              await api.delete(`deletar/${id}`)
-               
-              
-              setProcesso(processo.filter(processos=> processos.id !== id));
-            } catch (err) {
-              alert("Erro ao deletar o caso, tente novamente.");
-              console.log(id);
-            }
-          }
+    async function handleDeleteProcesso(id) {
+        try {
+            await api.delete(`deletar/${id}`)
+
+
+            setProcesso(processo.filter(processos => processos.id !== id));
+        } catch (err) {
+            alert("Erro ao deletar o caso, tente novamente.");
+            console.log(id);
+        }
+    }
 
     async function handleProcesso(e) {
         e.preventDefault();
@@ -103,7 +104,7 @@ export default function Processo() {
     return (
 
         <div>
-
+  <Header></Header>
 
             <div className="brand-logo center ">
                 <div>
@@ -117,7 +118,7 @@ export default function Processo() {
 
                     <label>NOME DO SOLICITANTE</label>
                     <input
-                        
+
                         type="text"
                         max="100"
                         placeholder="Nome"
@@ -125,63 +126,83 @@ export default function Processo() {
                         onChange={e => setName(e.target.value)}
                         required
                     />
- <div className="local">
-                   <div className="ineCep">
-                    <input
-                    className="ineCep"
-                        onChange={(e) => setCep(e.target.value)}
-                        placeholder="Digite seu cep Ex: 75388669"
-                        value={cep}
-                       required
-                        
-                    />
-                    </div>
- <button  type="button" className=" btn1 waves-effect btn-small blue darken-1 Large" onClick={consultarCep}><i className="material-icons" >search</i></button>
- </div>
-                    <div className="local">
-
-                        <input
-                            placeholder="Cidade"
-                            value={cidade}
-                            onChange={e => setCidade(e.target.value)}
-                            required
-                        />
-
-                        <input
-                            placeholder="Bairro"
-                            value={bairro}
-                            onChange={e => setBairro(e.target.value)}
-                            required
-                        />
-
-
-                    </div>
-                    <div className="local">
-
-                        <input
-                            placeholder="Rua"
-                            value={rua}
-                            onChange={e => setRua(e.target.value)}
-                            required
-                        />
-
-                        <input
-                            placeholder="Numero"
-                           
-                            onChange={e => setNumero(e.target.value)}
-                        />
-
-
-                    </div>
-
-
                     <label>DATA DO PROCESSO</label>
-                    <input
-                        type="date"
-                        placeholder="(83) 99911-2233"
-                        value={data}
-                        onChange={e => setdata(e.target.value)}
-                    />
+                    <div className="data">
+
+                        <input
+                            type="date"
+
+                            value={data}
+                            onChange={e => setdata(e.target.value)}
+                        />
+                        <div className="local">
+
+                            <div className="cep">
+                                <input
+                                    onChange={(e) => setCep(e.target.value)}
+                                    placeholder="Digite seu cep Ex: 75388669"
+                                    value={cep}
+                                    required
+
+                                />
+                            </div>
+                            <button type="button" className=" btn1 waves-effect btn-small blue darken-1 Large" onClick={consultarCep}><i className="material-icons" >search</i></button>
+                        </div>
+                    </div>
+                    <div className="local   ">
+
+                        <div className="inputLocalCidade">
+
+                            <input
+
+                                placeholder="Cidade"
+                                value={cidade}
+                                onChange={e => setCidade(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="inputLocal">
+                            <input
+
+                                placeholder="Bairro"
+                                value={bairro}
+                                onChange={e => setBairro(e.target.value)}
+                                required
+                            />
+
+                        </div>
+                    </div>
+                    <div className="local">
+                        <div className="inputLocalRua">
+                            <input
+                                placeholder="Rua"
+                                value={rua}
+                                onChange={e => setRua(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div className="inputNumero">
+
+                            <input
+                                placeholder="Numero"
+                                type="number"
+                                onChange={e => setNumero(e.target.value)}
+                            />
+
+                        </div>
+
+                    </div>
+                    <div className="arquivo">
+                      
+                        <div className="arquivoSelect">
+                        <label>ANEXE O SEU PROCESSO</label>
+                            <label className="labelFile" for='selecao-arquivo'><i class="material-icons">unarchive</i></label>
+                            <input id='selecao-arquivo' type='file'></input>
+
+                        </div>
+                    </div>
+
 
                     <button className="waves-effect waves-light btn-small">Salvar</button>
 
@@ -191,17 +212,17 @@ export default function Processo() {
                     <thead >
                         {processo.map((processos) => (
                             <tr key={processos.id}>
-                                
+
                                 <th> {processos.pessoa.nome}</th>
                                 <th>  {processos.endereco.cidade}</th>
                                 <th> rua(av) {processos.endereco.rua}</th>
                                 <th> Número {processos.endereco.numero}</th>
                                 <th>  {processos.endereco.cep}</th>
                                 <th> {processos.data}</th>
-                              
-                                <td>  
+
+                                <td>
                                     <button className="waves-effect btn-small blue darken-1" onClick={handleEditar}><i class="material-icons" >edit</i></button>
-                                    <button className="waves-effect btn-small red darken-1"onClick={()=> handleDeleteProcesso(processos.id)}><i class="material-icons" >delete</i></button>
+                                    <button className="waves-effect btn-small red darken-1" onClick={() => handleDeleteProcesso(processos.id)}><i class="material-icons" >delete</i></button>
                                 </td>
                             </tr>
 

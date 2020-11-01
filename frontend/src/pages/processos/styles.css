@@ -1,9 +1,56 @@
-    .local {
-        display: flex;
-    }
-    
-    .btn1 {
-        position: absolute;
-        margin-top: 0.5rem;
-        margin-left: 15rem;
-    }
+        .data {
+            display: flex;
+            width: 100%;
+        }
+        
+        .cep {
+            padding-left: 1rem;
+            width: 100%;
+        }
+        
+        .local {
+            display: flex;
+            width: 100%;
+        }
+        
+        .btn1 {
+            position: absolute;
+            margin-top: 0.5rem;
+            margin-left: 28rem;
+        }
+        
+        .inputLocalCidade {
+            width: 80%;
+        }
+        
+        .inputLocal {
+            padding-left: 1rem;
+            width: 80%;
+        }
+        
+        .inputLocalRua {
+            width: 100%;
+        }
+        
+        .inputNumero {
+            width: 20%;
+            padding-left: 1rem;
+        }
+        
+        .arquivoSelect {
+            padding-top: 0.5rem;
+            padding-bottom: 2rem;
+        }
+        
+        input[type='file'] {
+            display: none
+        }
+        
+        .labelFile {
+            background-color: #3498db;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+            padding: 6px 20px
+        }

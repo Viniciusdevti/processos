@@ -8,7 +8,7 @@ export default function Login() {
     const history = useHistory();
   
     function handleLogin (){
-        history.push('/processo');
+        history.push('/home');
     }
     return (
 

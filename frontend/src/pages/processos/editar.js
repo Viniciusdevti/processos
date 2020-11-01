@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {  useHistory } from "react-router-dom";
 import './styles.css'
 import api from "../services/api";
-
+import Header from '../../Header'
 export default function Editar() {
 
 
@@ -75,7 +75,7 @@ export default function Editar() {
     return (
 
         <div>
-
+  <Header></Header>
 
             <div class="brand-logo center ">
                 <div>
