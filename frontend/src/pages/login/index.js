@@ -17,13 +17,13 @@ export default function Login() {
 
 
             <div className="cont">
-                <div class="input-field ">
+                <div className="input-field ">
                     <h3 className="center">Login</h3>
                     <div class="input-field col s6">
                         <input id="email" type="email" class="validate "></input>
                         <label for="email">Email</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div className ="input-field col s6">
                         <input id="senha" type="password" class="validate"></input>
                         <label for="senha">Senha</label>
                         <a onClick={handleLogin} class="waves-effect waves-light btn">Entrar</a>
