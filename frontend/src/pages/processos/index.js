@@ -44,7 +44,7 @@ export default function Processo() {
                 setProcesso(response.data);
 
             });
-        },);
+        },[processo]);
 
 
         async function handleDeleteProcesso(id) {
@@ -126,15 +126,17 @@ export default function Processo() {
                         required
                     />
  <div className="local">
-                   
+                   <div className="ineCep">
                     <input
+                    className="ineCep"
                         onChange={(e) => setCep(e.target.value)}
                         placeholder="Digite seu cep Ex: 75388669"
                         value={cep}
-                        onChange={e => setCep(e.target.value)}
-                        required
+                       required
+                        
                     />
- <button className="waves-effect btn-small blue darken-1 Large" onClick={consultarCep}><i className="material-icons" >search</i></button>
+                    </div>
+ <button  type="button" className=" btn1 waves-effect btn-small blue darken-1 Large" onClick={consultarCep}><i className="material-icons" >search</i></button>
  </div>
                     <div className="local">
 

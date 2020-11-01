@@ -1,3 +1,9 @@
-.local {
-    display: flex;
-}
+    .local {
+        display: flex;
+    }
+    
+    .btn1 {
+        position: absolute;
+        margin-top: 0.5rem;
+        margin-left: 15rem;
+    }
